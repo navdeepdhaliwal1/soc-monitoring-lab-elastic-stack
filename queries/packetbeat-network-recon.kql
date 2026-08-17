@@ -1,0 +1,6 @@
+# Packetbeat baseline — all network flow activity captured during the test window
+agent.type : "packetbeat"
+
+# Packetbeat filtered — traffic involving a specific monitored host
+# Replace the IP with the host you're investigating
+source.ip : "192.168.56.104" or destination.ip : "192.168.56.104"

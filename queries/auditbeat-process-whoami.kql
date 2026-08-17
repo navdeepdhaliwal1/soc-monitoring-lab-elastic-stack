@@ -1,0 +1,3 @@
+# Auditbeat — process execution matching a specific binary
+# Swap "whoami" for other discovery commands: id, uname, hostname, etc.
+process.name : "whoami"

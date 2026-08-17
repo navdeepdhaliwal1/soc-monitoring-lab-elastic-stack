@@ -1,0 +1,25 @@
+# Sanitised example — auditbeat.yml
+# NOTE: replace with your actual sanitised config
+
+auditbeat.modules:
+  - module: auditd
+    resolve_ids: true
+    failure_mode: log
+    backlog_limit: 8196
+    rate_limit: 0
+    include_raw_message: false
+    include_warnings: false
+    audit_rules: |
+      -a always,exit -F arch=b64 -S execve -k process_exec
+
+  - module: file_integrity
+    paths:
+      - /bin
+      - /usr/bin
+      - /etc
+
+output.elasticsearch:
+  hosts: ["https://localhost:9200"]
+  username: "elastic"
+  password: "${ES_PASSWORD}"
+  ssl.certificate_authorities: ["/etc/auditbeat/certs/http_ca.crt"]

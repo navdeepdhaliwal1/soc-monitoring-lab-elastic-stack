@@ -1,0 +1,19 @@
+# Sanitised example — filebeat.yml
+# NOTE: replace with your actual sanitised config (strip real hostnames/credentials/IPs if different from this lab)
+
+filebeat.modules:
+  - module: system
+    syslog:
+      enabled: true
+    auth:
+      enabled: true
+      var.paths: ["/var/log/auth.log*"]
+
+output.elasticsearch:
+  hosts: ["https://localhost:9200"]
+  username: "elastic"
+  password: "${ES_PASSWORD}"   # never commit real credentials — use env var or keystore
+  ssl.certificate_authorities: ["/etc/filebeat/certs/http_ca.crt"]
+
+setup.kibana:
+  host: "localhost:5601"

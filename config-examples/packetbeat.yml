@@ -1,0 +1,22 @@
+# Sanitised example — packetbeat.yml
+# NOTE: replace with your actual sanitised config
+
+packetbeat.interfaces.device: any
+
+packetbeat.flows:
+  timeout: 30s
+  period: 10s
+
+packetbeat.protocols:
+  - type: dns
+    ports: [53]
+  - type: http
+    ports: [80, 8080, 8000]
+  - type: tls
+    ports: [443]
+
+output.elasticsearch:
+  hosts: ["https://localhost:9200"]
+  username: "elastic"
+  password: "${ES_PASSWORD}"
+  ssl.certificate_authorities: ["/etc/packetbeat/certs/http_ca.crt"]

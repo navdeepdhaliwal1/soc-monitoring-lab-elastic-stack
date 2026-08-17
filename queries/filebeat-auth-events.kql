@@ -1,0 +1,2 @@
+# Filebeat — authentication-specific events (SSH, sudo) from /var/log/auth.log
+event.dataset : "system.auth"
